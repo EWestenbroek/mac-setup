@@ -1,0 +1,18 @@
+# Lines with "#" or "--" will be ignored, so use these as comments or toggles.
+# Similar to the examples below
+
+# Browsers (choose one or both)
+--google-chrome
+firefox
+
+# Password managers
+1password
+
+# AI tools (choose one or both)
+chatgpt
+--anthropic
+
+# Mac utility tools
+rectangle
+hiddenbar
+displaylink

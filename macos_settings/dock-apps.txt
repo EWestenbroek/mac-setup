@@ -1,0 +1,10 @@
+
+# Add following apps to the Dock
+'<dict><key>tile-data</key><dict><key>file-data</key><dict><key>_CFURLString</key><string>/System/Applications/Launchpad.app</string><key>_CFURLStringType</key><integer>0</integer></dict></dict></dict>'
+'<dict><key>tile-data</key><dict><key>file-data</key><dict><key>_CFURLString</key><string>/System/Applications/Safari.app</string><key>_CFURLStringType</key><integer>0</integer></dict></dict></dict>'
+'<dict><key>tile-data</key><dict><key>file-data</key><dict><key>_CFURLString</key><string>/Applications/Firefox.app</string><key>_CFURLStringType</key><integer>0</integer></dict></dict></dict>'
+'<dict><key>tile-data</key><dict><key>file-data</key><dict><key>_CFURLString</key><string>/System/Applications/Notes.app</string><key>_CFURLStringType</key><integer>0</integer></dict></dict></dict>'
+'<dict><key>tile-data</key><dict><key>file-data</key><dict><key>_CFURLString</key><string>/System/Applications/System Settings.app</string><key>_CFURLStringType</key><integer>0</integer></dict></dict></dict>'
+
+# Add Downloads folder to the Dock
+'<dict><key>tile-data</key><dict><key>file-data</key><dict><key>_CFURLString</key><string>~/Downloads</string><key>_CFURLStringType</key><integer>0</integer></dict><key>displayas</key><integer>1</integer><key>file-label</key><string>Downloads</string><key>showas</key><integer>1</integer></dict><key>tile-type</key><string>directory-tile</string></dict>'

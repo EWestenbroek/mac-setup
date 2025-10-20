@@ -1,0 +1,8 @@
+
+NSGlobalDomain
+com.apple.dock
+com.apple.finder
+com.apple.screencapture
+com.apple.safari
+com.apple.mail
+com.apple.driver.AppleBluetoothMultitouch.trackpad
