@@ -67,38 +67,32 @@ defaults write com.apple.AdLib forceLimitAdTracking -bool true
 
 # Location Services (Master Toggle)
 # Options: 1 = enabled, 0 = disabled (more private)
-# Note: This requires elevated permissions on newer macOS versions
-sudo defaults write /var/db/locationd/Library/Preferences/ByHost/com.apple.locationd LocationServicesEnabled -int 0
+# NOTE: Location Services are ENABLED to support Find My Mac, auto-timezone, and weather
+# To completely disable Location Services, uncomment the line below
+# sudo defaults write /var/db/locationd/Library/Preferences/ByHost/com.apple.locationd LocationServicesEnabled -int 0
 
 # Show location icon in menu bar when location is being accessed
 # Options: true = show icon (more transparent), false = hide icon
 defaults write com.apple.locationmenu ShowSystemServices -bool true
 
-# Location-Based Suggestions (Spotlight, Safari, etc.)
-# Options: true = enabled, false = disabled (more private)
-defaults write com.apple.locationd LocationServicesEnabled -bool false
+# Enable System Services for essential features (Find My Mac, auto-timezone, weather)
+# Note: This enables location for system features while still protecting privacy for apps
+sudo defaults write /var/db/locationd/Library/Preferences/ByHost/com.apple.locationd LocationServicesEnabled -int 1
 
 # Location-Based Apple Ads
 # Options: true = enabled, false = disabled (more private)
+# Disabled for privacy while keeping essential location services working
 defaults write com.apple.locationd.plist LocationServicesEnabled -bool false
 
 # Significant Locations (Frequent Locations tracking)
 # Options: true = track frequent locations, false = disabled (more private)
-# This is used for traffic routing, location-based reminders, etc.
+# Disabled for privacy - this tracks your commonly visited locations
 sudo defaults write /var/db/locationd/Library/Preferences/ByHost/com.apple.locationd SignificantLocations -bool false
 
-# Location-Based Alerts
-# Options: true = enabled, false = disabled
-defaults write com.apple.locationd.plist LocationServicesEnabled -bool false
-
-# HomeKit Location Services
-# Options: true = enabled, false = disabled
-# Note: Disabling may affect HomeKit automation based on location
-# defaults write com.apple.locationd.plist LocationServicesEnabled -bool false
-
-# System Services - Time Zone & System Customization
-# Options: true = auto-set time zone, false = manual (more private)
-# sudo defaults write /var/db/locationd/Library/Preferences/ByHost/com.apple.locationd "SystemCustomization" -bool false
+# System Services - Time Zone & System Customization (ENABLED for auto-timezone)
+# Options: true = auto-set time zone (convenient), false = manual
+# Enabled so your timezone updates automatically when you travel
+sudo defaults write /var/db/locationd/Library/Preferences/ByHost/com.apple.locationd "SystemCustomization" -bool true
 
 # ---------------------------------------------------------------
 # Siri & Dictation
@@ -147,8 +141,9 @@ defaults write ~/Library/Preferences/ByHost/com.apple.coreservices.useractivityd
 
 # Bluetooth power state
 # Options: 1 = on, 0 = off (more private, but disables all Bluetooth devices)
-# Note: This will turn off Bluetooth completely
-sudo defaults write /Library/Preferences/com.apple.Bluetooth ControllerPowerState -int 0
+# WARNING: Setting this to 0 will disable ALL Bluetooth devices (keyboard, mouse, AirPods, etc.)
+# Uncomment the line below ONLY if you want to completely disable Bluetooth
+# sudo defaults write /Library/Preferences/com.apple.Bluetooth ControllerPowerState -int 0
 
 # Show Bluetooth in menu bar
 # Options: true = show, false = hide
@@ -159,28 +154,33 @@ sudo defaults write /Library/Preferences/com.apple.Bluetooth ControllerPowerStat
 # ---------------------------------------------------------------
 
 # Firewall state
-# Options: 0 = off, 1 = on for specific services, 2 = on for essential services (more secure)
+# Options: 0 = off, 1 = on for specific services, 2 = on for essential services (more restrictive)
+# Set to 1 for balanced security that allows most legitimate apps to work
 sudo defaults write /Library/Preferences/com.apple.alf globalstate -int 1
 
 # Stealth mode (don't respond to ICMP ping requests or connection attempts)
-# Options: 1 = enabled (more secure), 0 = disabled
-sudo defaults write /Library/Preferences/com.apple.alf stealthenabled -int 1
+# Options: 1 = enabled (more secure), 0 = disabled (allows network diagnostics)
+# Disabled for easier troubleshooting and normal network operations
+sudo defaults write /Library/Preferences/com.apple.alf stealthenabled -int 0
 
 # Automatically allow built-in software to receive incoming connections
-# Options: 1 = allow (default), 0 = block (more secure)
-sudo defaults write /Library/Preferences/com.apple.alf allowdownloadsignedenabled -int 0
+# Options: 1 = allow (default), 0 = block (more secure but may break system features)
+# Enabled to allow Apple's built-in apps (FaceTime, Messages, etc.) to work properly
+sudo defaults write /Library/Preferences/com.apple.alf allowdownloadsignedenabled -int 1
 
 # Automatically allow downloaded signed software to receive incoming connections
-# Options: 1 = allow, 0 = block (more secure)
+# Options: 1 = allow (convenient), 0 = block (more secure but requires manual approval)
+# Enabled to allow trusted signed apps to work without manual firewall configuration
 sudo defaults write /Library/Preferences/com.apple.alf allowsignedenabled -int 1
 
 # Firewall logging
 # Options: 1 = enabled (helps monitor activity), 0 = disabled
-sudo defaults write /Library/Preferences/com.apple.alf loggingenabled -int 1
+# Disabled to reduce system overhead and log clutter for typical users
+sudo defaults write /Library/Preferences/com.apple.alf loggingenabled -int 0
 
-# Firewall logging detail level
+# Firewall logging detail level (only applies if logging is enabled)
 # Options: "detail" = detailed logging, "brief" = brief logging
-sudo defaults write /Library/Preferences/com.apple.alf loggingOption -string "detail"
+# sudo defaults write /Library/Preferences/com.apple.alf loggingOption -string "brief"
 
 # ---------------------------------------------------------------
 # Gatekeeper Settings (App Store and downloaded apps)

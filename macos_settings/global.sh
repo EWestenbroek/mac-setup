@@ -14,8 +14,8 @@ defaults write NSGlobalDomain NSAutomaticPeriodSubstitutionEnabled -bool false  
 defaults write NSGlobalDomain AppleEnableSwipeNavigateWithScrolls -bool false  # default true
 # Trackpad speed
 defaults write NSGlobalDomain com.apple.trackpad.scaling -int 2  # default 1 (= slower)
-# Mouse settings
-defaults write NSGlobalDomain com.apple.mouse.scaling -int 2  # default 3 (1 = slow, 5 = fast)
+# Mouse settings (Note: more detailed mouse settings are in mouse-trackpad.sh)
+defaults write NSGlobalDomain com.apple.mouse.scaling -int 3  # default 3 (1 = slow, 5 = fast)
 defaults write NSGlobalDomain com.apple.mouse.scrollDirection -bool false  # default true (disable natural scrolling)
 defaults write NSGlobalDomain com.apple.mouse.doubleClickThreshold -float 0.5  # default 0.5 (double-click speed)
 # Springing (folder open delay)
@@ -25,12 +25,18 @@ defaults write NSGlobalDomain com.apple.springing.enabled -bool true  # default 
 defaults write NSGlobalDomain com.apple.sound.beep.flash -bool true  # default true
 # Font anti-aliasing threshold
 defaults write NSGlobalDomain AppleAntiAliasingThreshold -int 4  # default 6
-# Custom text replacements
-defaults write NSGlobalDomain NSUserDictionaryReplacementItems -array \
-  '{"on"=1;"replace"="izjz";"with"="Ik zie je zo!";}' \
-  '{"on"=1;"replace"="exht";"with"="echt";}' \
-  '{"on"=1;"replace"="soen";"with"="doen";}' \
-  '{"on"=1;"replace"="biet";"with"="niet";}'
+
+# Custom text replacements (Examples - uncomment and customize as needed)
+# Format: defaults write NSGlobalDomain NSUserDictionaryReplacementItems -array \
+#   '{"on"=1;"replace"="typo";"with"="correction";}' \
+#   '{"on"=1;"replace"="btw";"with"="by the way";}'
+# Uncomment the lines below to add your own custom text replacements:
+# defaults write NSGlobalDomain NSUserDictionaryReplacementItems -array \
+#   '{"on"=1;"replace"="izjz";"with"="Ik zie je zo!";}' \
+#   '{"on"=1;"replace"="exht";"with"="echt";}' \
+#   '{"on"=1;"replace"="soen";"with"="doen";}' \
+#   '{"on"=1;"replace"="biet";"with"="niet";}'
+
 # Default web search engine
 defaults write NSGlobalDomain NSPreferredWebServices -dict-add NSWebServicesProviderWebSearch '{
   NSDefaultDisplayName = Google;

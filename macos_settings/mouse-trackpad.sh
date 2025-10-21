@@ -64,5 +64,4 @@ defaults write NSGlobalDomain com.apple.mouse.scrollDirection -bool false
 # ---------------------------------------------------------------
 # Restart mouse and trackpad drivers to apply changes
 sudo pkill -HUP AppleBluetoothMultitouchTrackpad
-sudo pkill -HUP AppleBluetoothMultitouchTrackpad
 # ---------------------------------------------------------------

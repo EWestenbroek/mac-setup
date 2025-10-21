@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# Get the directory where this script is located
+SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+
 # Auto-hide the Dock
 defaults write com.apple.dock autohide -bool true  # default false
 
@@ -24,20 +27,24 @@ defaults write com.apple.dock wvous-tr-modifier -int 1048576  # 1048576 = Comman
 defaults write com.apple.dock persistent-apps -array
 defaults write com.apple.dock persistent-others -array
 
-# Add apps and folders from dock_apps.txt
-if [ -f "dock_apps.txt" ]; then
+# Add apps and folders from dock-apps.txt
+DOCK_APPS_FILE="$SCRIPT_DIR/dock-apps.txt"
+if [ -f "$DOCK_APPS_FILE" ]; then
     while IFS= read -r line; do
         # Skip empty lines and comments
         [[ "$line" =~ ^[[:space:]]*#.*$ || "$line" =~ ^[[:space:]]*--.*$ || -z "$line" ]] && continue
 
-        # Add app to Dock
-        if [[ "$line" == *"persistent-apps"* ]]; then
-            defaults write com.apple.dock persistent-apps -array-add "$line"
-        # Add folder to Dock
-        elif [[ "$line" == *"persistent-others"* ]]; then
+        # Determine if this is a folder or app based on the presence of "directory-tile"
+        if [[ "$line" == *"directory-tile"* ]]; then
+            # Add folder to Dock
             defaults write com.apple.dock persistent-others -array-add "$line"
+        else
+            # Add app to Dock (default)
+            defaults write com.apple.dock persistent-apps -array-add "$line"
         fi
-    done < "dock_apps.txt"
+    done < "$DOCK_APPS_FILE"
+else
+    echo "Warning: $DOCK_APPS_FILE not found. Skipping Dock app configuration."
 fi
 
 # ---------------------------------------------------------------
