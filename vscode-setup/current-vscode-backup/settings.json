@@ -1,0 +1,20 @@
+{
+    "[python]": {
+        "editor.detectIndentation" : false,
+        "editor.insertSpaces": true,
+        "editor.tabSize": 4
+    },
+    "editor.renderWhitespace": "all",
+    "workbench.colorCustomizations": {
+        "editorWhitespace.foreground": "#bcc51760"
+     },
+    "terminal.integrated.defaultProfile.osx": "zsh",
+    "amazonQ.suppressPrompts": {
+        "amazonQChatPairProgramming": true,
+        "amazonQChatDisclaimer": true,
+        "amazonQSessionConfigurationMessage": true,
+        "amazonQSelectDeveloperProfile": true,
+        "codeWhispererConnectionExpired": true
+    },
+
+}
